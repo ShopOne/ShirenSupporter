@@ -1,3 +1,12 @@
 <resources>
-    <string name="app_name">Shiren Supporter</string>
+    <string name="app_name">風来のシレンSFCサポーター</string>
+    <string name="go_dmg_calc_btn">ダメージ計算をする</string>
+    <string name="input_level">レベル</string>
+    <string name="input_sword_pow">剣の攻撃力</string>
+    <string name="input_pow">ちから</string>
+    <string name="input_def">防御力</string>
+    <string name="input_monster">モンスター</string>
+    <string name="run_calc_btn">計算開始</string>
+    <string name="show_maxim_dmg">最大ダメージ</string>
+    <string name="show_minimum_dmg">最小ダメージ</string>
 </resources>
