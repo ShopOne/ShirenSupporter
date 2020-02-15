@@ -5,8 +5,7 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class MonsterEntity constructor(
-    @PrimaryKey(autoGenerate = true)
-    val id: Int,
+    @PrimaryKey val id: Int,
     val name: String,
     val hp: Int,
     val pow: Int,
