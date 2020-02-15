@@ -28,7 +28,7 @@
             android:layout_marginTop="40dp"
             android:text="@string/show_minimum_dmg_to"/>
         <TextView
-            android:id="@+id/minimumDamageBy"
+            android:id="@+id/minimumDamageTo"
             android:layout_width="match_parent"
             android:background="#ffffff"
             android:textColor="#0045ff"
@@ -50,7 +50,7 @@
             android:layout_marginTop="40dp"
             android:text="@string/show_minimum_dmg_by"/>
         <TextView
-            android:id="@+id/minimumDamageTo"
+            android:id="@+id/minimumDamageBy"
             android:layout_width="match_parent"
             android:background="#ffffff"
             android:textColor="#0045ff"
@@ -65,73 +65,151 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:orientation="vertical">
-            <EditText
-                android:id="@+id/levelInput"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="3dp"
-                android:layout_marginLeft="3dp"
-                android:background="#ffffff"
-                android:hint="@string/input_level"
-                android:inputType="number"
-                android:importantForAutofill="no" />
-            <EditText
-                android:id="@+id/hpInput"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="3dp"
-                android:layout_marginLeft="3dp"
-                android:background="#ffffff"
-                android:hint="@string/input_hp"
-                android:inputType="number"
-                android:importantForAutofill="no" />
+                android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/swordPowInput"
-                android:layout_width="208dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="3dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="3dp"
-                android:background="#ffffff"
-                android:hint="@string/input_sword_pow"
-                android:importantForAutofill="no"
-                android:inputType="number" />
-            <EditText
-                android:id="@+id/powInput"
+                <EditText
+                    android:id="@+id/levelInput"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="3dp"
+                    android:background="#ffffff"
+                    android:hint="@string/input_level"
+                    android:importantForAutofill="no"
+                    android:inputType="number" />
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="3dp"
+                    android:layout_marginLeft="3dp"
+                    android:text="@string/input_level"/>
+            </LinearLayout>
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="3dp"
-                android:layout_marginLeft="3dp"
-                android:background="#ffffff"
-                android:hint="@string/input_pow"
-                android:inputType="number"
-                android:importantForAutofill="no" />
-            <EditText
-                android:id="@+id/defInput"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/hpInput"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="3dp"
+                    android:background="#ffffff"
+                    android:hint="@string/input_hp"
+                    android:importantForAutofill="no"
+                    android:inputType="number" />
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="3dp"
+                    android:layout_marginLeft="3dp"
+                    android:text="@string/input_hp"/>
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="3dp"
-                android:layout_marginLeft="3dp"
-                android:background="#ffffff"
-                android:hint="@string/input_def"
-                android:inputType="number"
-                android:importantForAutofill="no" />
-            <EditText
-                android:id="@+id/monsterInput"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/swordPowInput"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="3dp"
+                    android:background="#ffffff"
+                    android:hint="@string/input_sword_pow"
+                    android:importantForAutofill="no"
+                    android:inputType="number" />
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="3dp"
+                    android:layout_marginLeft="3dp"
+                    android:text="@string/input_sword_pow"/>
+            </LinearLayout>
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="3dp"
-                android:layout_marginLeft="3dp"
-                android:background="#ffffff"
-                android:hint="@string/input_monster"
-                android:inputType="text"
-                android:importantForAutofill="no" />
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/powInput"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="3dp"
+                    android:background="#ffffff"
+                    android:hint="@string/input_pow"
+                    android:importantForAutofill="no"
+                    android:inputType="number" />
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="3dp"
+                    android:layout_marginLeft="3dp"
+                    android:text="@string/input_pow"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/defInput"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="3dp"
+                    android:background="#ffffff"
+                    android:hint="@string/input_def"
+                    android:importantForAutofill="no"
+                    android:inputType="number" />
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="3dp"
+                    android:layout_marginLeft="3dp"
+                    android:text="@string/input_def"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/monsterInput"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="3dp"
+                    android:background="#ffffff"
+                    android:hint="@string/input_monster"
+                    android:importantForAutofill="no"
+                    android:inputType="text" />
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="3dp"
+                    android:layout_marginLeft="3dp"
+                    android:text="@string/input_def"/>
+            </LinearLayout>
         </LinearLayout>
 
         <Button

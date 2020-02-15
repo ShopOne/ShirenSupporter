@@ -1,6 +1,7 @@
 package com.example.shirensupporter
 
 import android.app.Application
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.AsyncTask
@@ -30,7 +31,7 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this@MainActivity,DamageCalc::class.java)
             startActivity(intent)
         }
-        val prefs = getSharedPreferences(MAIN_PREF,AppCompatActivity.MODE_PRIVATE)
+        val prefs = getSharedPreferences(MAIN_PREF, Context.MODE_PRIVATE)
         val isFirst = prefs.getBoolean(FIRST_START_UP,true)
         if(isFirst){
             firstProcess(prefs)

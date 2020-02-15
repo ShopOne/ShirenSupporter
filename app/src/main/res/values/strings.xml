@@ -10,6 +10,6 @@
     <string name="run_calc_btn">計算開始</string>
     <string name="show_maxim_dmg_to">最大与ダメージ</string>
     <string name="show_minimum_dmg_to">最小与ダメージ</string>
-    <string name="show_maxim_dmg_by">最大与ダメージ</string>
-    <string name="show_minimum_dmg_by">最小与ダメージ</string>
+    <string name="show_maxim_dmg_by">最大被ダメージ</string>
+    <string name="show_minimum_dmg_by">最小被ダメージ</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.example.shirensupporter
 
+import kotlin.math.min
 import kotlin.math.pow
 import kotlin.math.roundToInt
 
@@ -9,6 +10,7 @@ const val MIN_TI = 1
 const val MAX_TI = 50
 const val MIN_SWORD = 0
 const val MAX_SWORD = 255
+const val MAX_SW_AND_POW = 128.0
 class Player(
     _hp: Int,
     _def: Int,
@@ -28,11 +30,11 @@ class Player(
         107,108,109,110,111,112,113,115,116,117,
         118,119,120,121,122,123,124,125,126,127
     )
-    private val playerBasePower = adjustVal(MIN_POW,MAX_POW,
-        ((powByLevel[level-1]+(swordPow+tikara-8.0))/16).roundToInt())
+    val basePower = adjustVal(MIN_POW,MAX_POW,
+        ((powByLevel[level-1]+powByLevel[level-1]*(min(swordPow+tikara-8.0, MAX_SW_AND_POW))/16.0)).roundToInt())
 
     fun attackTo(chara: Character): Pair<Int,Int> =
-        calcDamage(attack = playerBasePower,defence = chara.def)
+        calcDamage(attack = basePower,defence = chara.def)
     fun attackBy(chara: Character): Pair<Int,Int> =
         calcDamage(attack = chara.pow,defence = def)
 }
