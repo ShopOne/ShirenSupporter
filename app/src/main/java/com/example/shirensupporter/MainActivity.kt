@@ -35,10 +35,6 @@ class MainActivity : AppCompatActivity() {
         if(isFirst){
             firstProcess(prefs)
         }
-
-        // for debug
-        prefs.edit().putBoolean(FIRST_START_UP,true)
-            .apply()
     }
     private fun firstProcess(prefs: SharedPreferences){
         inputData()

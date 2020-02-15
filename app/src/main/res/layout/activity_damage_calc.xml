@@ -15,9 +15,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:text="@string/show_maxim_dmg"/>
+            android:text="@string/show_maxim_dmg_to"/>
         <TextView
-            android:id="@+id/maximDamage"
+            android:id="@+id/maximDamageTo"
             android:layout_width="match_parent"
             android:background="#ffffff"
             android:textColor="#ff4500"
@@ -26,9 +26,31 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:text="@string/show_minimum_dmg"/>
+            android:text="@string/show_minimum_dmg_to"/>
         <TextView
-            android:id="@+id/minimumDamage"
+            android:id="@+id/minimumDamageBy"
+            android:layout_width="match_parent"
+            android:background="#ffffff"
+            android:textColor="#0045ff"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="@string/show_maxim_dmg_by"/>
+        <TextView
+            android:id="@+id/maximDamageBy"
+            android:layout_width="match_parent"
+            android:background="#ffffff"
+            android:textColor="#ff4500"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="@string/show_minimum_dmg_by"/>
+        <TextView
+            android:id="@+id/minimumDamageTo"
             android:layout_width="match_parent"
             android:background="#ffffff"
             android:textColor="#0045ff"
@@ -52,6 +74,17 @@
                 android:layout_marginLeft="3dp"
                 android:background="#ffffff"
                 android:hint="@string/input_level"
+                android:inputType="number"
+                android:importantForAutofill="no" />
+            <EditText
+                android:id="@+id/hpInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="3dp"
+                android:layout_marginLeft="3dp"
+                android:background="#ffffff"
+                android:hint="@string/input_hp"
                 android:inputType="number"
                 android:importantForAutofill="no" />
 
@@ -102,6 +135,7 @@
         </LinearLayout>
 
         <Button
+            android:id="@+id/runCalcBtn"
             android:layout_width="match_parent"
             android:layout_height="197dp"
             android:text="@string/run_calc_btn" />

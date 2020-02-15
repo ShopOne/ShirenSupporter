@@ -5,8 +5,11 @@
     <string name="input_sword_pow">剣の攻撃力</string>
     <string name="input_pow">ちから</string>
     <string name="input_def">防御力</string>
+    <string name="input_hp">HP</string>
     <string name="input_monster">モンスター</string>
     <string name="run_calc_btn">計算開始</string>
-    <string name="show_maxim_dmg">最大ダメージ</string>
-    <string name="show_minimum_dmg">最小ダメージ</string>
+    <string name="show_maxim_dmg_to">最大与ダメージ</string>
+    <string name="show_minimum_dmg_to">最小与ダメージ</string>
+    <string name="show_maxim_dmg_by">最大与ダメージ</string>
+    <string name="show_minimum_dmg_by">最小与ダメージ</string>
 </resources>

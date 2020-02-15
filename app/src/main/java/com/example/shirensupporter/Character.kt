@@ -1,5 +1,6 @@
 package com.example.shirensupporter
 
+import android.util.Log
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.pow
@@ -29,6 +30,7 @@ open class Character(
 
     fun calcDamage(attack: Int,defence: Int): Pair<Int,Int>{
         val baseDmg = (attack*(15.0/16.0).pow(defence))
+        Log.d("calc_info","$attack $defence $baseDmg ${adjustVal(0,50,30)}")
         var minDmg = (baseDmg*7.0/8.0).roundToInt()
         var maxDmg = (baseDmg*143.0/128.0).roundToInt()
 

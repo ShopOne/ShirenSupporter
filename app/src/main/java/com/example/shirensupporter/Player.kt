@@ -11,14 +11,13 @@ const val MIN_SWORD = 0
 const val MAX_SWORD = 255
 class Player(
     _hp: Int,
-    _pow: Int,
     _def: Int,
     _level: Int,
-    _tikara: Int,
+    _pow: Int,
     _swordPow: Int
-): Character(_hp = _hp,_pow = _pow,name = "Shiren",_def = _def){
+): Character(_hp = _hp,_pow = 0,name = "Shiren",_def = _def){
     private val level = adjustVal(MIN_LV,MAX_LV,_level)
-    private val tikara = adjustVal(MIN_TI,MAX_TI,_tikara)
+    private val tikara = adjustVal(MIN_TI,MAX_TI,_pow)
     private val swordPow = adjustVal(MIN_SWORD, MAX_SWORD,_swordPow)
     private val powByLevel = listOf(
         5,7,9,11,13,15,17,19,21,23,
@@ -34,6 +33,6 @@ class Player(
 
     fun attackTo(chara: Character): Pair<Int,Int> =
         calcDamage(attack = playerBasePower,defence = chara.def)
-    fun attackFrom(chara: Character): Pair<Int,Int> =
+    fun attackBy(chara: Character): Pair<Int,Int> =
         calcDamage(attack = chara.pow,defence = def)
 }
