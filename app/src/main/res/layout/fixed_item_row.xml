@@ -11,7 +11,7 @@
 
 
         <TextView
-            android:id="@+id/itemNameTable"
+            android:id="@+id/fItemNameTable"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -22,7 +22,7 @@
             android:text="@string/table_name" />
 
         <TextView
-            android:id="@+id/itemBuyPriceTable"
+            android:id="@+id/fItemBuyPriceTable"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -31,12 +31,32 @@
             android:paddingRight="10dp"
             android:paddingBottom="2dp"
             android:text="@string/table_buy_price" />
+        <TextView
+            android:id="@+id/fItemFixedValBuyTable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/table_fixed_val"
+            android:layout_gravity="center"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"/>
 
         <TextView
-            android:id="@+id/itemSellPriceTable"
+            android:id="@+id/fItemSellPriceTable"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/table_sell_price"
+            android:layout_gravity="center"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"/>
+        <TextView
+            android:id="@+id/itemFixedValSellTable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/table_fixed_val"
             android:layout_gravity="center"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
