@@ -8,20 +8,33 @@ import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import android.view.ViewParent
 import android.widget.AdapterView
+import android.widget.TableLayout
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.room.Room
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
+import androidx.viewpager.widget.ViewPager
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.table_row.view.*
 import java.io.File
 import java.io.IOException
 
 const val MAIN_PREF = "MAIN_KEY"
 const val FIRST_START_UP = "FIRST_START_UP"
-const val MONSTER_FILE = "rawMonsterData.txt"
-class MainActivity : AppCompatActivity() {
+const val PAGER_NUM = 3
+private const val WC = ViewGroup.LayoutParams.WRAP_CONTENT
+private const val MP = ViewGroup.LayoutParams.MATCH_PARENT
+class MainActivity : FragmentActivity() {
 
+    private lateinit var mpage: ViewPager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -36,6 +49,19 @@ class MainActivity : AppCompatActivity() {
         if(isFirst){
             firstProcess(prefs)
         }
+
+        mpage = itemViewPager
+        mpage.adapter = ScreenSlidePagerAdapter(supportFragmentManager)
+    }
+    private inner class ScreenSlidePagerAdapter(fm: FragmentManager):FragmentStatePagerAdapter(fm,
+        BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT){
+        override fun getCount(): Int {
+            return PAGER_NUM
+        }
+        override fun getItem(position: Int):Fragment {
+            return ItemsFragment(position)
+        }
+
     }
     private fun firstProcess(prefs: SharedPreferences){
         inputData()
