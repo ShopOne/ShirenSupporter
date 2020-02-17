@@ -218,7 +218,7 @@
                 android:layout_marginLeft="3dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="3dp"
-                android:text="@string/input_def" />
+                android:text="@string/input_monster" />
         </LinearLayout>
 
     </LinearLayout>

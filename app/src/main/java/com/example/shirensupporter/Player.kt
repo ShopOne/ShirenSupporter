@@ -15,13 +15,13 @@ class Player(
     _hp: Int,
     _def: Int,
     _level: Int,
-    _pow: Int,
+    _tikara: Int,
     _swordPow: Int
-): Character(_hp = _hp,_pow = 0,name = "Shiren",_def = _def){
+): Character(_hp = _hp,_pow = _tikara,name = "Shiren",_def = _def){
     val level = adjustVal(MIN_LV,MAX_LV,_level)
-    val tikara = adjustVal(MIN_TI,MAX_TI,_pow)
+    val tikara = adjustVal(MIN_TI,MAX_TI,_tikara)
     val swordPow = adjustVal(MIN_SWORD, MAX_SWORD,_swordPow)
-    val powByLevel = listOf(
+    private val powByLevel = listOf(
         5,7,9,11,13,15,17,19,21,23,
         26,28,31,34,37,41,44,47,50,53,
         56,58,60,63,66,70,74,78,80,82,
@@ -30,7 +30,7 @@ class Player(
         107,108,109,110,111,112,113,115,116,117,
         118,119,120,121,122,123,124,125,126,127
     )
-    val basePower = adjustVal(MIN_POW,MAX_POW,
+    private val basePower = adjustVal(MIN_POW,MAX_POW,
         ((powByLevel[level-1]+powByLevel[level-1]*(min(swordPow+tikara-8.0, MAX_SW_AND_POW))/16.0)).roundToInt())
 
     fun attackTo(chara: Character): Pair<Int,Int> =

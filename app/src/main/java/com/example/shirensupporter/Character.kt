@@ -30,13 +30,11 @@ open class Character(
 
     fun calcDamage(attack: Int,defence: Int): Pair<Int,Int>{
         val baseDmg = (attack*(15.0/16.0).pow(defence))
-        var minDmg = (baseDmg*7.0/8.0).roundToInt()
-        var maxDmg = (baseDmg*143.0/128.0).roundToInt()
-        Log.d("calc_info","$minDmg $maxDmg $baseDmg ${adjustVal(0,50,30)}")
+        var minDmg = (baseDmg*7.0/8.0).toInt()
+        var maxDmg = (baseDmg*143.0/128.0).toInt()
 
         minDmg = adjustVal(MIN_DMG,MAX_DMG,minDmg)
         maxDmg = adjustVal(MIN_DMG,MAX_DMG,maxDmg)
-        Log.d("calc_info","$minDmg $maxDmg $baseDmg ${adjustVal(0,50,30)}")
         return Pair(minDmg,maxDmg)
     }
 

@@ -43,7 +43,7 @@ class DamageCalc : AppCompatActivity() {
                 Toast.makeText(applicationContext,"モンスターが見つかりません",Toast.LENGTH_SHORT).show()
             }else{
                 val player = Player(_hp = playerHp,_swordPow = playerSwordPow,_def = playerDef,
-                    _level = playerLevel,_pow = playerPow)
+                    _level = playerLevel,_tikara = playerPow)
 
                 val attackDmg = player.attackTo(monster)
                 minimumDamageTo.text = attackDmg.first.toString()
@@ -65,7 +65,7 @@ class DamageCalc : AppCompatActivity() {
 
                 levelInput.setText(player.level.toString())
                 hpInput.setText(player.hp.toString())
-                powInput.setText(player.pow.toString())
+                powInput.setText(player.tikara.toString())
                 swordPowInput.setText(player.swordPow.toString())
                 defInput.setText(player.def.toString())
             }
