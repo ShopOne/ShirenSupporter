@@ -8,16 +8,17 @@
         android:background="@color/white"
         android:text=""/>
     <TextView
-        android:id="@+id/itemSellPrice"
+        android:id="@+id/itemBuyPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="1dp"
         android:layout_marginRight="1dp"
         android:background="@color/white"
-        android:gravity="center" />
+        android:gravity="center"
+        android:text=""/>
 
     <TextView
-        android:id="@+id/itemBuyPrice"
+        android:id="@+id/itemSellPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="1dp"

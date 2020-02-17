@@ -1,48 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableRow xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
-    <TextView
-        android:id="@+id/fNameRow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:text=""/>
-    <TextView
-        android:id="@+id/fItemBuyPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="1dp"
-        android:layout_marginRight="1dp"
-        android:background="@color/white"
-        android:gravity="center"
-        android:text=""/>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:id="@+id/fTableLayout">
+    <TableRow
+        android:layout_width="match_parent" android:layout_height="match_parent"
+        android:id="@+id/fTableRow">
+        <TextView
+            android:id="@+id/fItemNameTable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:text="@string/table_name"/>
+        <TextView
+            android:id="@+id/fItemBuyPriceTable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp"
+            android:background="@color/white"
+            android:gravity="center"
+            android:text="@string/table_buy_price"/>
 
-    <TextView
-        android:id="@+id/fItemBuyFixedVal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="1dp"
-        android:layout_marginRight="1dp"
-        android:background="@color/white"
-        android:text=""
-        android:gravity="center"/>
+        <TextView
+            android:id="@+id/fItemBuyFixedPriceTable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp"
+            android:background="@color/white"
+            android:text="@string/table_fixed_val"
+            android:gravity="center"/>
 
-    <TextView
-        android:id="@+id/fItemSellPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="1dp"
-        android:layout_marginRight="1dp"
-        android:background="@color/white"
-        android:gravity="center" />
-    <TextView
-        android:id="@+id/fItemSellFixedVal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="1dp"
-        android:layout_marginRight="1dp"
-        android:background="@color/white"
-        android:text=""
-        android:gravity="center"/>
+        <TextView
+            android:id="@+id/fItemSellPriceTable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp"
+            android:background="@color/white"
+            android:text="@string/table_sell_price"
+            android:gravity="center" />
+        <TextView
+            android:id="@+id/fItemSellFixedPriceTable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp"
+            android:background="@color/white"
+            android:text="@string/table_fixed_val"
+            android:gravity="center"/>
 
-</TableRow>
+    </TableRow>
+</TableLayout>

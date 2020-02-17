@@ -23,7 +23,7 @@ import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import androidx.viewpager.widget.ViewPager
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.table_row.view.*
+import kotlinx.android.synthetic.main.item_row.view.*
 import java.io.File
 import java.io.IOException
 

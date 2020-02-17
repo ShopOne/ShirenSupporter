@@ -1,18 +1,15 @@
 package com.example.shirensupporter
 
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TableLayout
 import androidx.fragment.app.Fragment
+import kotlinx.android.synthetic.main.fixed_item_row.view.*
 import kotlinx.android.synthetic.main.fixed_item_table.view.*
-import kotlinx.android.synthetic.main.item_table.*
 import kotlinx.android.synthetic.main.item_table.view.*
-import kotlinx.android.synthetic.main.table_row.view.*
-import org.w3c.dom.ls.LSResourceResolver
+import kotlinx.android.synthetic.main.item_row.view.*
 
 
 class ItemsFragment(val cnt: Int): Fragment(){
@@ -21,31 +18,27 @@ class ItemsFragment(val cnt: Int): Fragment(){
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val v =  inflater.inflate(R.layout.item_table,container,false)
-        val table = v.tableLayout
+        val v =  inflater.inflate(R.layout.fixed_item_table,container,false)
+        val table = v.fTableLayout
 
-        Log.d("hogefugaa",items.toString())
         items[0].forEachIndexed {idx,item->
-            val tableRow = inflater.inflate(R.layout.table_row,null)
-            tableRow.nameRow.text = item.name
-            tableRow.itemBuyPrice.text = item.buyPrice.toString()
-            tableRow.itemSellPrice.text = item.sellPrice.toString()
-            if(idx %2 == 0){
-                val col = resources.getColor(R.color.gray)
-                tableRow.nameRow.setBackgroundColor(col)
-                tableRow.itemBuyPrice.setBackgroundColor(col)
-                tableRow.itemSellPrice.setBackgroundColor(col)
+            if(item is FixedItem){
+                val fTableRow = inflater.inflate(R.layout.fixed_item_row,null)
+                Log.d("item",item.name+" "+item.buyPrice+" "+fTableRow.fNameRow)
+                fTableRow.fNameRow.text = item.name
+                fTableRow.fItemBuyPrice.text = item.buyPrice.toString()
+                fTableRow.fItemFixedBuyPrice.text = item.fixedBuyPrice.toString()
+                fTableRow.fItemSellPrice.text = item.sellPrice.toString()
+                fTableRow.fItemFixedSellPrice.text = item.fixedSellPrice.toString()
+                table.addView(fTableRow)
 
             }
-
-
-            table.addView(tableRow)
         }
 
 
         return v;
     }
-    val items = listOf(
+    private val items = listOf(
         listOf<Item>(
             FixedItem("つるはし",240,12,100,7),
             FixedItem("こん棒",240,24,80,8),

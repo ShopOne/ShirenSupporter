@@ -1,66 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
-    android:id="@+id/tableLayout"
-    android:stretchColumns="0">
-    <TableRow
-        android:id="@+id/tableRow"
-        android:layout_width="match_parent"
+<TableRow
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="5dp">
+
+
+    <TextView
+        android:id="@+id/fNameRow"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp">
+        android:layout_gravity="center"
+        android:paddingLeft="5dp"
+        android:paddingTop="2dp"
+        android:paddingRight="5dp"
+        android:paddingBottom="2dp"
+        android:text="@string/table_name" />
 
+    <TextView
+        android:id="@+id/fItemBuyPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingLeft="10dp"
+        android:paddingTop="2dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="2dp"
+        android:text="@string/table_buy_price" />
+    <TextView
+        android:id="@+id/fItemFixedBuyPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/table_fixed_val"
+        android:layout_gravity="center"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"/>
 
-        <TextView
-            android:id="@+id/fItemNameTable"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:paddingLeft="5dp"
-            android:paddingTop="2dp"
-            android:paddingRight="5dp"
-            android:paddingBottom="2dp"
-            android:text="@string/table_name" />
-
-        <TextView
-            android:id="@+id/fItemBuyPriceTable"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:paddingLeft="10dp"
-            android:paddingTop="2dp"
-            android:paddingRight="10dp"
-            android:paddingBottom="2dp"
-            android:text="@string/table_buy_price" />
-        <TextView
-            android:id="@+id/fItemFixedValBuyTable"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/table_fixed_val"
-            android:layout_gravity="center"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:paddingTop="2dp"
-            android:paddingBottom="2dp"/>
-
-        <TextView
-            android:id="@+id/fItemSellPriceTable"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/table_sell_price"
-            android:layout_gravity="center"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:paddingTop="2dp"
-            android:paddingBottom="2dp"/>
-        <TextView
-            android:id="@+id/itemFixedValSellTable"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/table_fixed_val"
-            android:layout_gravity="center"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:paddingTop="2dp"
-            android:paddingBottom="2dp"/>
-    </TableRow>
-</TableLayout>
+    <TextView
+        android:id="@+id/fItemSellPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/table_sell_price"
+        android:layout_gravity="center"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"/>
+    <TextView
+        android:id="@+id/fItemFixedSellPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/table_fixed_val"
+        android:layout_gravity="center"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"/>
+</TableRow>
