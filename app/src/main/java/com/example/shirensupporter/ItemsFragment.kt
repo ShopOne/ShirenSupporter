@@ -1,31 +1,42 @@
 package com.example.shirensupporter
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.content.res.Resources
 import android.graphics.Color
 import android.os.Bundle
+import android.preference.Preference
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.getColor
+import android.widget.TableRow
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fixed_item_row.view.*
 import kotlinx.android.synthetic.main.fixed_item_table.view.*
 import kotlinx.android.synthetic.main.item_table.view.*
 import kotlinx.android.synthetic.main.item_row.view.*
 
+const val ITEM_PREF = "ITEM_PREF"
 
-class ItemsFragment(private val cnt: Int): Fragment(){
+class ItemsFragment(private val cnt: Int,private val prefs: SharedPreferences): Fragment(){
+    private var checkCol :Int = 0
+    private var whiteCol :Int = 0
+    private var grayCol: Int = 0
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        checkCol = resources.getColor(R.color.checked_col)
+        whiteCol = resources.getColor(R.color.white)
+        grayCol = resources.getColor(R.color.gray)
         if(items[cnt][0] is FixedItem){
             val v =  inflater.inflate(R.layout.fixed_item_table,container,false)
             val table = v.fTableLayout
             items[cnt].forEachIndexed {idx,item->
+                var nameCol:Int
                 if(item is FixedItem){
                     val fTableRow = inflater.inflate(R.layout.fixed_item_row,null)
                     fTableRow.fNameRow.text = item.name
@@ -33,17 +44,14 @@ class ItemsFragment(private val cnt: Int): Fragment(){
                     fTableRow.fItemFixedBuyPrice.text = item.fixedBuyPrice.toString()
                     fTableRow.fItemSellPrice.text = item.sellPrice.toString()
                     fTableRow.fItemFixedSellPrice.text = item.fixedSellPrice.toString()
-                    table.addView(fTableRow)
-                    // 奇数番目だけ、色を暗く
-                    if(idx %2 == 1){
-                        val col = resources.getColor(R.color.gray)
-                        fTableRow.fNameRow.setBackgroundColor(col)
-                        fTableRow.fItemBuyPrice.setBackgroundColor(col)
-                        fTableRow.fItemFixedBuyPrice.setBackgroundColor(col)
-                        fTableRow.fItemSellPrice.setBackgroundColor(col)
-                        fTableRow.fItemFixedSellPrice.setBackgroundColor(col)
-                    }
+                    fTableRow.setOnClickListener(RowClickedListener())
+                    fTableRow.fNameRow.setOnClickListener(RowClickedListener())
+                    fTableRow.fNameRow.setBackgroundColor(
+                        if(prefs.getBoolean(item.name,true)) whiteCol
+                        else checkCol
+                    )
 
+                    table.addView(fTableRow)
                 }
             }
             return v
@@ -55,20 +63,32 @@ class ItemsFragment(private val cnt: Int): Fragment(){
                 tableRow.nameRow.text = item.name
                 tableRow.itemBuyPrice.text = item.buyPrice.toString()
                 tableRow.itemSellPrice.text = item.sellPrice.toString()
+                tableRow.setOnClickListener(RowClickedListener())
+
+                tableRow.nameRow.setBackgroundColor(
+                    if(prefs.getBoolean(item.name,true)) whiteCol
+                    else checkCol
+                )
+                tableRow.nameRow.setOnClickListener(RowClickedListener())
 
                 table.addView(tableRow)
-                if(idx % 2 == 0){
-
-                    val col = resources.getColor(R.color.gray)
-                    tableRow.nameRow.setBackgroundColor(col)
-                    tableRow.itemBuyPrice.setBackgroundColor(col)
-                    tableRow.itemSellPrice.setBackgroundColor(col)
-                }
             }
             return v
         }
-
-
+    }
+    private inner class RowClickedListener: View.OnClickListener{
+        override fun onClick(p0: View?) {
+            if(p0 is TextView){
+                val nb = !prefs.getBoolean(p0.text.toString(),true)
+                p0.setBackgroundColor(
+                    if(nb) whiteCol
+                    else checkCol
+                )
+                prefs.edit()
+                    .putBoolean(p0.text.toString(),nb)
+                    .apply()
+            }
+        }
     }
     private val items = listOf(
         listOf(

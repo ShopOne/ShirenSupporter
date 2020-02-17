@@ -18,10 +18,10 @@ class Player(
     _pow: Int,
     _swordPow: Int
 ): Character(_hp = _hp,_pow = 0,name = "Shiren",_def = _def){
-    private val level = adjustVal(MIN_LV,MAX_LV,_level)
-    private val tikara = adjustVal(MIN_TI,MAX_TI,_pow)
-    private val swordPow = adjustVal(MIN_SWORD, MAX_SWORD,_swordPow)
-    private val powByLevel = listOf(
+    val level = adjustVal(MIN_LV,MAX_LV,_level)
+    val tikara = adjustVal(MIN_TI,MAX_TI,_pow)
+    val swordPow = adjustVal(MIN_SWORD, MAX_SWORD,_swordPow)
+    val powByLevel = listOf(
         5,7,9,11,13,15,17,19,21,23,
         26,28,31,34,37,41,44,47,50,53,
         56,58,60,63,66,70,74,78,80,82,

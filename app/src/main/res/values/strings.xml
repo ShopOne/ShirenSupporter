@@ -16,4 +16,5 @@
     <string name="table_buy_price">買値</string>
     <string name="table_sell_price">売値</string>
     <string name="table_fixed_val">+1</string>
+    <string name="del_info_btn">登録情報解除</string>
 </resources>

@@ -44,7 +44,6 @@ class DamageCalc : AppCompatActivity() {
             }else{
                 val player = Player(_hp = playerHp,_swordPow = playerSwordPow,_def = playerDef,
                     _level = playerLevel,_pow = playerPow)
-                Toast.makeText(applicationContext,"${monster.def} pow ${player.basePower}",Toast.LENGTH_SHORT).show()
 
                 val attackDmg = player.attackTo(monster)
                 minimumDamageTo.text = attackDmg.first.toString()
@@ -56,13 +55,19 @@ class DamageCalc : AppCompatActivity() {
 
                 val prefs = getSharedPreferences(MAIN_PREF, Context.MODE_PRIVATE)
                 prefs.edit()
-                    .putInt(SAVED_LV,playerLevel)
-                    .putInt(SAVED_HP,playerHp)
-                    .putInt(SAVED_POW,playerPow)
-                    .putInt(SAVED_SPOW,playerSwordPow)
-                    .putInt(SAVED_DEF,playerDef)
+                    .putInt(SAVED_LV,player.level)
+                    .putInt(SAVED_HP,player.hp)
+                    .putInt(SAVED_POW,player.tikara)
+                    .putInt(SAVED_SPOW,player.swordPow)
+                    .putInt(SAVED_DEF,player.def)
                     .putString(SAVED_MON,monsterName)
                     .apply()
+
+                levelInput.setText(player.level.toString())
+                hpInput.setText(player.hp.toString())
+                powInput.setText(player.pow.toString())
+                swordPowInput.setText(player.swordPow.toString())
+                defInput.setText(player.def.toString())
             }
         }
     }

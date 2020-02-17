@@ -45,21 +45,22 @@ class MainActivity : FragmentActivity() {
             startActivity(intent)
         }
         val prefs = getSharedPreferences(MAIN_PREF, Context.MODE_PRIVATE)
+        val itemPrefs = getSharedPreferences(ITEM_PREF,Context.MODE_PRIVATE)
         val isFirst = prefs.getBoolean(FIRST_START_UP,true)
         if(isFirst){
             firstProcess(prefs)
         }
 
         mpage = itemViewPager
-        mpage.adapter = ScreenSlidePagerAdapter(supportFragmentManager)
+        mpage.adapter = ScreenSlidePagerAdapter(supportFragmentManager,itemPrefs)
     }
-    private inner class ScreenSlidePagerAdapter(fm: FragmentManager):FragmentStatePagerAdapter(fm,
+    private inner class ScreenSlidePagerAdapter(fm: FragmentManager,val prefs: SharedPreferences):FragmentStatePagerAdapter(fm,
         BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT){
         override fun getCount(): Int {
             return PAGER_NUM
         }
         override fun getItem(position: Int):Fragment {
-            return ItemsFragment(position)
+            return ItemsFragment(position,prefs)
         }
 
     }
