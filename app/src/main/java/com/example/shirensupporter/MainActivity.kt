@@ -29,7 +29,7 @@ import java.io.IOException
 
 const val MAIN_PREF = "MAIN_KEY"
 const val FIRST_START_UP = "FIRST_START_UP"
-const val PAGER_NUM = 3
+const val PAGER_NUM = 7
 private const val WC = ViewGroup.LayoutParams.WRAP_CONTENT
 private const val MP = ViewGroup.LayoutParams.MATCH_PARENT
 class MainActivity : FragmentActivity() {

@@ -9,26 +9,16 @@
     android:background="#f5deb3"
     tools:context=".MainActivity">
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.2"
-        android:id="@+id/newPageBtn"
-        android:text="@string/go_dmg_calc_btn"/>
-
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/itemViewPager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.8">
-        <androidx.viewpager.widget.PagerTabStrip
-            android:id="@+id/pagerTabStrip"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top"
-            android:background="#FFFFFF"
-            android:textColor="#FF5F5F"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"/>
+        android:layout_weight="0.9">
     </androidx.viewpager.widget.ViewPager>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.1"
+        android:id="@+id/newPageBtn"
+        android:text="@string/go_dmg_calc_btn"/>
 </LinearLayout>
