@@ -5,13 +5,13 @@ import android.content.SharedPreferences
 import android.content.res.Resources
 import android.graphics.Color
 import android.os.Bundle
-import android.preference.Preference
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TableRow
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fixed_item_row.view.*
 import kotlinx.android.synthetic.main.fixed_item_table.view.*
@@ -24,21 +24,21 @@ class ItemsFragment(private val cnt: Int,private val prefs: SharedPreferences): 
     private var checkCol :Int = 0
     private var whiteCol :Int = 0
     private var grayCol: Int = 0
+    lateinit var nowView: View
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        checkCol = resources.getColor(R.color.checked_col)
-        whiteCol = resources.getColor(R.color.white)
-        grayCol = resources.getColor(R.color.gray)
+        checkCol = ContextCompat.getColor(context!!,R.color.checked_col)
+        whiteCol = ContextCompat.getColor(context!!,R.color.white)
+        grayCol = ContextCompat.getColor(context!!,R.color.gray)
         if(items[cnt][0] is FixedItem){
             val v =  inflater.inflate(R.layout.fixed_item_table,container,false)
             val table = v.fTableLayout
-            items[cnt].forEachIndexed {idx,item->
-                var nameCol:Int
+            items[cnt].forEach {item->
                 if(item is FixedItem){
-                    val fTableRow = inflater.inflate(R.layout.fixed_item_row,null)
+                    val fTableRow = View.inflate(context,R.layout.fixed_item_row,null)
                     fTableRow.fNameRow.text = item.name
                     fTableRow.fItemBuyPrice.text = item.buyPrice.toString()
                     fTableRow.fItemFixedBuyPrice.text = item.fixedBuyPrice.toString()
@@ -54,12 +54,13 @@ class ItemsFragment(private val cnt: Int,private val prefs: SharedPreferences): 
                     table.addView(fTableRow)
                 }
             }
+            nowView = v
             return v
         }else{
             val v =  inflater.inflate(R.layout.item_table,container,false)
             val table = v.tableLayout
-            items[cnt].forEachIndexed {idx,item->
-                val tableRow = inflater.inflate(R.layout.item_row,null)
+            items[cnt].forEach {item->
+                val tableRow = View.inflate(context,R.layout.item_row,null)
                 tableRow.nameRow.text = item.name
                 tableRow.itemBuyPrice.text = item.buyPrice.toString()
                 tableRow.itemSellPrice.text = item.sellPrice.toString()
@@ -73,6 +74,7 @@ class ItemsFragment(private val cnt: Int,private val prefs: SharedPreferences): 
 
                 table.addView(tableRow)
             }
+            nowView = v
             return v
         }
     }
@@ -90,7 +92,7 @@ class ItemsFragment(private val cnt: Int,private val prefs: SharedPreferences): 
             }
         }
     }
-    private val items = listOf(
+    val items = listOf(
         listOf(
             FixedItem("つるはし",240,12,100,7),
             FixedItem("こん棒",240,24,80,8),

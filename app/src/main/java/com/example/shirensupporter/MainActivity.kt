@@ -1,35 +1,31 @@
 package com.example.shirensupporter
 
-import android.app.Application
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.AsyncTask
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewParent
-import android.widget.AdapterView
 import android.widget.TableLayout
+import android.widget.TableRow
+import androidx.core.content.ContextCompat
+import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.room.Room
-import androidx.room.migration.Migration
-import androidx.sqlite.db.SupportSQLiteDatabase
 import androidx.viewpager.widget.ViewPager
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fixed_item_row.view.*
 import kotlinx.android.synthetic.main.item_row.view.*
-import java.io.File
-import java.io.IOException
 
 const val MAIN_PREF = "MAIN_KEY"
 const val FIRST_START_UP = "FIRST_START_UP"
 const val PAGER_NUM = 7
+const val FIXED_ITEM_KIND = 4
 private const val WC = ViewGroup.LayoutParams.WRAP_CONTENT
 private const val MP = ViewGroup.LayoutParams.MATCH_PARENT
 class MainActivity : FragmentActivity() {
@@ -53,12 +49,53 @@ class MainActivity : FragmentActivity() {
 
         mpage = itemViewPager
         mpage.adapter = ScreenSlidePagerAdapter(supportFragmentManager,itemPrefs)
+        val adp = mpage.adapter
+
+        //TODO get pager's view and create reset button
+        resetDataBtn.setOnClickListener{
+            val fragment = adp?.instantiateItem(itemViewPager,itemViewPager.currentItem)
+            if(fragment is ItemsFragment){
+                val nowTable = fragment.nowView
+                getAndResetColor(nowTable, itemPrefs)
+            }
+        }
     }
+
+    private fun getAndResetColor(
+        nowTable: View,
+        itemPrefs: SharedPreferences
+    ) {
+        var firstRow = true
+        if (nowTable is TableLayout) {
+            nowTable.children.forEach {
+                if (it is TableRow) {
+                    if (firstRow) {
+                        firstRow = false
+                    } else {
+                        itemPrefs.edit()
+                            .putBoolean(
+                                if (itemViewPager.currentItem < FIXED_ITEM_KIND)
+                                    it.fNameRow.text.toString()
+                                else
+                                    it.nameRow.text.toString()
+                                , true
+                            ).apply()
+                        if (itemViewPager.currentItem < FIXED_ITEM_KIND)
+                            it.fNameRow.setBackgroundColor(ContextCompat.getColor(this@MainActivity,R.color.white))
+                        else
+                            it.nameRow.setBackgroundColor(ContextCompat.getColor(this@MainActivity,R.color.white))
+                    }
+                }
+            }
+        }
+    }
+
     private inner class ScreenSlidePagerAdapter(fm: FragmentManager,val prefs: SharedPreferences):FragmentStatePagerAdapter(fm,
         BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT){
         override fun getCount(): Int {
             return PAGER_NUM
         }
+        fun findFragmentByPosition(vp: ViewPager,pos: Int) = instantiateItem(vp,pos)
         override fun getItem(position: Int):Fragment {
             return ItemsFragment(position,prefs)
         }
