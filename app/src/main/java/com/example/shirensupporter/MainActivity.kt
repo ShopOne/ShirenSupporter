@@ -51,7 +51,6 @@ class MainActivity : FragmentActivity() {
         mpage.adapter = ScreenSlidePagerAdapter(supportFragmentManager,itemPrefs)
         val adp = mpage.adapter
 
-        //TODO get pager's view and create reset button
         resetDataBtn.setOnClickListener{
             val fragment = adp?.instantiateItem(itemViewPager,itemViewPager.currentItem)
             if(fragment is ItemsFragment){
