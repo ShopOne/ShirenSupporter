@@ -32,26 +32,24 @@ class DamageCalc : AppCompatActivity() {
         initBox()
 
         runCalcBtn.setOnClickListener {
-            val playerLevel = levelInput.text.toString().toIntOrNull()?:1
-            val playerHp = hpInput.text.toString().toIntOrNull()?:15
-            val playerPow = powInput.text.toString().toIntOrNull()?:8
-            val playerSwordPow = swordPowInput.text.toString().toIntOrNull()?:0
-            val playerDef = defInput.text.toString().toIntOrNull()?:0
             val monsterName = monsterInput.text.toString()
             val monster = monsterList[monsterName]
             if(monster==null){
                 Toast.makeText(applicationContext,"モンスターが見つかりません",Toast.LENGTH_SHORT).show()
             }else{
-                val player = Player(_hp = playerHp,_swordPow = playerSwordPow,_def = playerDef,
-                    _level = playerLevel,_tikara = playerPow)
+                val player = Player(
+                    _hp = hpInput.text.toString().toIntOrNull()?:15,
+                    _swordPow = swordPowInput.text.toString().toIntOrNull()?:0,
+                    _def = defInput.text.toString().toIntOrNull()?:0,
+                    _level = levelInput.text.toString().toIntOrNull()?:1,
+                    _tikara = powInput.text.toString().toIntOrNull()?:8)
 
                 val attackDmg = player.attackTo(monster)
-                minimumDamageTo.text = attackDmg.first.toString()
-                maximDamageTo.text = attackDmg.second.toString()
-
                 val attackedDmg = player.attackBy(monster)
-                minimumDamageBy.text = attackedDmg.first.toString()
-                maximDamageBy.text = attackedDmg.second.toString()
+                // 切り上げの式
+                val beatCount = (monster.hp + attackDmg.second - 1) / attackDmg.second
+                val beatenCount = (player.hp + attackedDmg.first - 1) / attackDmg.first
+
 
                 val prefs = getSharedPreferences(MAIN_PREF, Context.MODE_PRIVATE)
                 prefs.edit()
@@ -63,27 +61,45 @@ class DamageCalc : AppCompatActivity() {
                     .putString(SAVED_MON,monsterName)
                     .apply()
 
-                levelInput.setText(player.level.toString())
-                hpInput.setText(player.hp.toString())
-                powInput.setText(player.tikara.toString())
-                swordPowInput.setText(player.swordPow.toString())
-                defInput.setText(player.def.toString())
-
-
-                var beatText = ""
-                var beatenText = ""
-                // 切り上げの式
-                val beatCount = (monster.hp + attackDmg.second - 1) / attackDmg.second
-                val beatenCount = (player.hp + attackedDmg.first - 1) / attackDmg.first
-
-                beatText += beatCount.toString() + resources.getString(R.string.beat_text)
-                beatenText += beatenCount.toString() + resources.getString(R.string.beaten_text)
-
-                beatTextView.text = beatText
-                beatenTextView.text = beatenText
+                setTextToView(
+                    player,
+                    attackDmg,
+                    attackedDmg,
+                    beatCount,
+                    beatenCount
+                )
             }
         }
     }
+
+    private fun setTextToView(
+        player: Player,
+        attackDmg: Pair<Int, Int>,
+        attackedDmg: Pair<Int, Int>,
+        beatCount: Int,
+        beatenCount: Int
+    ) {
+        var beatText = ""
+        var beatenText = ""
+        levelInput.setText(player.level.toString())
+        hpInput.setText(player.hp.toString())
+        powInput.setText(player.tikara.toString())
+        swordPowInput.setText(player.swordPow.toString())
+        defInput.setText(player.def.toString())
+
+        minimumDamageTo.text = attackDmg.first.toString()
+        maximDamageTo.text = attackDmg.second.toString()
+        minimumDamageBy.text = attackedDmg.first.toString()
+        maximDamageBy.text = attackedDmg.second.toString()
+
+
+        beatText += beatCount.toString() + resources.getString(R.string.beat_text)
+        beatenText += beatenCount.toString() + resources.getString(R.string.beaten_text)
+
+        beatTextView.text = beatText
+        beatenTextView.text = beatenText
+    }
+
     private fun initBox(){
         val prefs = getSharedPreferences(MAIN_PREF, Context.MODE_PRIVATE)
         val nowLevel = prefs.getInt(SAVED_LV,1).toString()
