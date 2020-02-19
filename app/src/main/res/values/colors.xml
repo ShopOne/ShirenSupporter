@@ -7,4 +7,5 @@
     <color name="gray">#DDDDDD</color>
     <color name="line">#77FF77</color>
     <color name="checked_col">#228822</color>
+    <color name="worst_case_col">#BEC2E8</color>
 </resources>

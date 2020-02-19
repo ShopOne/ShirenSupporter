@@ -68,6 +68,19 @@ class DamageCalc : AppCompatActivity() {
                 powInput.setText(player.tikara.toString())
                 swordPowInput.setText(player.swordPow.toString())
                 defInput.setText(player.def.toString())
+
+
+                var beatText = ""
+                var beatenText = ""
+                // 切り上げの式
+                val beatCount = (monster.hp + attackDmg.second - 1) / attackDmg.second
+                val beatenCount = (player.hp + attackedDmg.first - 1) / attackDmg.first
+
+                beatText += beatCount.toString() + resources.getString(R.string.beat_text)
+                beatenText += beatenCount.toString() + resources.getString(R.string.beaten_text)
+
+                beatTextView.text = beatText
+                beatenTextView.text = beatenText
             }
         }
     }
