@@ -20,4 +20,6 @@
     <string name="worst_case_text">最悪</string>
     <string name="beat_text">回倒すのにかかります</string>
     <string name="beaten_text">回で倒されます</string>
+    <string name="cant_beat_text">倒せません</string>
+    <string name="cant_beaten_text">倒せません</string>
 </resources>

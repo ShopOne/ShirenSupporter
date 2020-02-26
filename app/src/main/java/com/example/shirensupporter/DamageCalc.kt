@@ -18,6 +18,7 @@ const val SAVED_SPOW ="SAVED_SPOW"
 const val SAVED_MON = "SAVED_MON"
 const val SAVED_DEF = "SAVED_DEF"
 const val SAVED_HP = "SAVED_HP"
+const val INF = 1000000000
 class DamageCalc : AppCompatActivity() {
 
     lateinit var db: UserDataBase
@@ -46,10 +47,11 @@ class DamageCalc : AppCompatActivity() {
 
                 val attackDmg = player.attackTo(monster)
                 val attackedDmg = player.attackBy(monster)
-                // 切り上げの式
-                val beatCount = (monster.hp + attackDmg.second - 1) / attackDmg.second
-                val beatenCount = (player.hp + attackedDmg.first - 1) / attackDmg.first
-
+                // 切り上げの式 firstは最大値 secondは最小値
+                val beatCount = if(attackDmg.second != 0) (monster.hp + attackDmg.second - 1) / attackDmg.second
+                                else INF
+                val beatenCount = if(attackedDmg.first != 0)(player.hp + attackedDmg.first - 1) / attackedDmg.first
+                                  else INF
 
                 val prefs = getSharedPreferences(MAIN_PREF, Context.MODE_PRIVATE)
                 prefs.edit()
@@ -89,12 +91,16 @@ class DamageCalc : AppCompatActivity() {
 
         minimumDamageTo.text = attackDmg.first.toString()
         maximDamageTo.text = attackDmg.second.toString()
+
         minimumDamageBy.text = attackedDmg.first.toString()
         maximDamageBy.text = attackedDmg.second.toString()
 
 
-        beatText += beatCount.toString() + resources.getString(R.string.beat_text)
-        beatenText += beatenCount.toString() + resources.getString(R.string.beaten_text)
+        beatText += if(beatCount != INF) beatCount.toString() + resources.getString(R.string.beat_text)
+                    else resources.getString(R.string.cant_beat_text)
+
+        beatenText += if(beatenCount != INF) beatenCount.toString() + resources.getString(R.string.beaten_text)
+                      else resources.getString(R.string.cant_beaten_text)
 
         beatTextView.text = beatText
         beatenTextView.text = beatenText

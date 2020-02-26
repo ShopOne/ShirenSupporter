@@ -71,18 +71,19 @@ class MainActivity : FragmentActivity() {
                     if (firstRow) {
                         firstRow = false
                     } else {
+                        val nowTextView =  if (itemViewPager.currentItem < FIXED_ITEM_KIND)
+                            it.fNameRow
+                        else
+                            it.nameRow
                         itemPrefs.edit()
                             .putBoolean(
-                                if (itemViewPager.currentItem < FIXED_ITEM_KIND)
-                                    it.fNameRow.text.toString()
-                                else
-                                    it.nameRow.text.toString()
+                                nowTextView.text.toString()
                                 , true
                             ).apply()
                         if (itemViewPager.currentItem < FIXED_ITEM_KIND)
-                            it.fNameRow.setBackgroundColor(ContextCompat.getColor(this@MainActivity,R.color.white))
+                            nowTextView.setBackgroundColor(ContextCompat.getColor(this@MainActivity,R.color.white))
                         else
-                            it.nameRow.setBackgroundColor(ContextCompat.getColor(this@MainActivity,R.color.white))
+                            nowTextView.setBackgroundColor(ContextCompat.getColor(this@MainActivity,R.color.white))
                     }
                 }
             }
